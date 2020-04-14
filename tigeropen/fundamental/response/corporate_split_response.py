@@ -6,6 +6,7 @@ from tigeropen.common.response import TigerResponse
 COLUMNS = ['symbol', 'action_type', 'from_factor', 'to_factor', 'ratio', 'execute_date', 'market', 'exchange']
 SPLIT_FIELD_MAPPINGS = {'actionType': 'action_type', 'fromFactor': 'from_factor', 'toFactor': 'to_factor',
                         'executeDate': 'execute_date'}
+COLUMNS_o = ['symbol', 'actionType', 'fromFactor', 'toFactor', 'ratio', 'executeDate', 'market', 'exchange']
 
 
 class CorporateSplitResponse(TigerResponse):
@@ -25,4 +26,4 @@ class CorporateSplitResponse(TigerResponse):
                 for item in split_items:
                     item['symbol'] = symbol
                     items.append(item)
-            self.corporate_split = pd.DataFrame(items).rename(columns=SPLIT_FIELD_MAPPINGS)[COLUMNS]
+            self.corporate_split = pd.DataFrame(items, columns=COLUMNS_o).rename(columns=SPLIT_FIELD_MAPPINGS)[COLUMNS]
